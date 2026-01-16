@@ -1,8 +1,14 @@
 #include "func.h"
 
-int main(void)
+int main(int argc, char **argv)
 {
-    printf("Hello World!");
+    (void)argc;
+    int status;
 
-    return 0;
+    //child process
+    if (fork() == 0)
+    {
+        execvp(argv[1], argv + 1);
+    }
+    wait(&status);
 }
