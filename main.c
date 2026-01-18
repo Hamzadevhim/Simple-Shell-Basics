@@ -3,7 +3,15 @@
 
 int main()
 {
-    printf("whats good world");
+    char *line = NULL;
+    size_t size = 0;
+    size_t userInput;
 
-    return 0;
+    printf("HAMZASHELL> ");
+
+    while(1)
+    {
+        userInput = getline(&line, &size, stdin);
+        printf("%ld",userInput);
+    }
 }
