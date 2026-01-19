@@ -1,5 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+
+#include "utils.h"
 
 int main()
 {
@@ -8,9 +12,9 @@ int main()
 
     printf("HAMZASHELL> ");
 
-    while(1)
-    {
-        getline(&line, &size, stdin);
-        printf("%s", line);
-    }
+    getline(&line, &size, stdin);
+    line[strcspn(line, "\n")] = '\0';
+    char *argv[] = {line, NULL};
+    
+    execvp(argv[0], argv);
 }
